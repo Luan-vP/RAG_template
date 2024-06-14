@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rag_router"
+version = "0.0.1"
+authors = [
+  { name="Luan van Pletsen", email="luanvanpletsen@gmail.com" },
+]
+description = "A router for managing RAG functions for plaintext data using weaviate."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/Luan-vP/RAG_template"
+Issues = "https://github.com/Luan-vP/RAG_template/issues"

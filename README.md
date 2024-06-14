@@ -5,3 +5,7 @@ Configured for local Ollama instance, using llama3 for embedding and generative 
 Requirements:
 - Local weaviate instance
 - Local Ollama instance with llama3
+
+TODO:
+[] API endpoints
+[] Dockerfile
