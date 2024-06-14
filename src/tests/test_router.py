@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
-from ..src.router import router as rag_router
+from ..rag_router.router import router as rag_router
 
 app = FastAPI()
 app.include_router(rag_router)

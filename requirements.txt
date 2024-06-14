@@ -1,2 +1,2 @@
-weaviate-client
 fastapi
+weaviate-client
