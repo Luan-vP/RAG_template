@@ -9,3 +9,5 @@ Requirements:
 TODO:
 [] API endpoints
 [] Dockerfile
+[] Weaviate setup functions
+[] Integration tests with Weaviate (docker-compose)
