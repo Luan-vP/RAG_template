@@ -1,23 +1,23 @@
 import os
 import re
-import sys
 from pathlib import Path
-from uuid import uuid4
 
 import weaviate
 import weaviate.classes.config as wvcc
-from ai_journal.storage import example_data_location, read_user_data
 from weaviate.classes.config import Configure
 from weaviate.util import get_valid_uuid
 
-import ai_journal
+example_data_location = Path("data/").resolve()
+
+WEAVIATE_COLLECTION_NAME = os.getenv("WEAVIATE_COLLECTION_NAME") or "WeaviateTextChunks"
 
 client = weaviate.connect_to_local(host="localhost")
+
 
 # client.collections.delete_all()
 
 collection = client.collections.create(
-    name="WeaviateJournalChunk",
+    name=WEAVIATE_COLLECTION_NAME,
     vectorizer_config=[
         Configure.NamedVectors.text2vec_ollama(
             name="title_vector",
