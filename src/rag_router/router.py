@@ -2,6 +2,7 @@ import os
 
 import weaviate
 from fastapi import APIRouter
+from pydantic import BaseModel
 
 router = APIRouter()
 
@@ -15,7 +16,13 @@ client = weaviate.connect_to_local(host=WEAVIATE_HOST)
 collection = client.collections.get(WEAVIATE_COLLECTION_NAME)
 
 
-@router.get("/generative_search/{query}")
-def generative_search(query: str):
-    response = collection.generate.near_text(query=query, limit=5, grouped_task=query)
+class Query(BaseModel):
+    query: str
+
+
+@router.post("/generative_search")
+def generative_search(input: Query):
+    response = collection.generate.near_text(
+        query=input.query, limit=5, grouped_task=input.query
+    )
     return response.generated
