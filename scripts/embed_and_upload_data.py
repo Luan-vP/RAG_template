@@ -7,7 +7,10 @@ import weaviate.classes.config as wvcc
 from weaviate.classes.config import Configure
 from weaviate.util import get_valid_uuid
 
-example_data_location = Path("data/").resolve()
+data_location = (
+    "demo_data/" if os.getenv("IS_DEMO") in ["1", "true", "True"] else "data/"
+)
+data_folder = Path(data_location).resolve()
 
 WEAVIATE_COLLECTION_NAME = os.getenv("WEAVIATE_COLLECTION_NAME") or "WeaviateTextChunks"
 
@@ -60,17 +63,16 @@ def read_and_chunk_files(main_folder_path):
     return journal_chunks
 
 
-# Example usage
-journal_chunks = read_and_chunk_files(example_data_location)
+if __name__ == "__main__":
 
-len(journal_chunks)
+    text_chunks = read_and_chunk_files(data_folder)
 
-journal_chunks[0]
+    print(f"Created {len(text_chunks)} text chunks.")
 
+    collection = client.collections.get(WEAVIATE_COLLECTION_NAME)
 
-journal = client.collections.get("WeaviateJournalChunk")
+    idx = -1
+    for idx, text_chunk in enumerate(text_chunks):
+        upload = collection.data.insert(properties={"content": text_chunk})
 
-for idx, journal_chunk in enumerate(journal_chunks):
-    upload = journal.data.insert(properties={"content": journal_chunk})
-
-print(f"Uploaded {idx} journal chunks.")
+    print(f"Uploaded {idx + 1} text chunks.")
