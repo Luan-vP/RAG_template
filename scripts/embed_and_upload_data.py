@@ -14,8 +14,6 @@ WEAVIATE_COLLECTION_NAME = os.getenv("WEAVIATE_COLLECTION_NAME") or "WeaviateTex
 client = weaviate.connect_to_local(host="localhost")
 
 
-# client.collections.delete_all()
-
 collection = client.collections.create(
     name=WEAVIATE_COLLECTION_NAME,
     vectorizer_config=[
