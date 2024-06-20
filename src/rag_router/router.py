@@ -9,7 +9,9 @@ router = APIRouter()
 
 # We assume that the Weaviate collection is configured with an LLM.
 WEAVIATE_HOST = os.getenv("WEAVIATE_HOST") or "localhost"
-WEAVIATE_COLLECTION_NAME = os.getenv("WEAVIATE_COLLECTION_NAME") or "WeaviateTextChunks"
+WEAVIATE_COLLECTION_NAME = (
+    os.getenv("WEAVIATE_COLLECTION_NAME") or "WeaviateTextChunks"
+)
 
 
 client = weaviate.connect_to_local(host=WEAVIATE_HOST)

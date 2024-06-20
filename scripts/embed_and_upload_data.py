@@ -19,7 +19,10 @@ def split_into_sentences(text):
 
 
 def read_and_chunk_files(main_folder_path):
-    """Read .md files from the folder path, split into sentences, and chunk every 5 sentences."""
+    """
+    Read .md files from the folder path, split into sentences,
+    and chunk every 5 sentences.
+    """
     journal_chunks = []
     data_folder_path = Path(main_folder_path).resolve()
 
@@ -32,7 +35,9 @@ def read_and_chunk_files(main_folder_path):
                 content = file.read()
                 sentences = split_into_sentences(content)
                 sentence_chunks = chunk_list(sentences, 5)
-                sentence_chunks = [" ".join(chunk) for chunk in sentence_chunks]
+                sentence_chunks = [
+                    " ".join(chunk) for chunk in sentence_chunks
+                ]
                 journal_chunks.extend(sentence_chunks)
     return journal_chunks
 
@@ -40,7 +45,9 @@ def read_and_chunk_files(main_folder_path):
 if __name__ == "__main__":
 
     data_location = (
-        "demo_data/" if os.getenv("IS_DEMO") in ["1", "true", "True"] else "data/"
+        "demo_data/"
+        if os.getenv("IS_DEMO") in ["1", "true", "True"]
+        else "data/"
     )
     data_folder = Path(data_location).resolve()
 
@@ -56,7 +63,7 @@ if __name__ == "__main__":
             Configure.NamedVectors.text2vec_ollama(
                 name="title_vector",
                 source_properties=["title"],
-                api_endpoint="http://host.docker.internal:11434",  # If using Docker, use this to contact your local Ollama instance
+                api_endpoint="http://host.docker.internal:11434",
                 model="llama3:8b",
             )
         ],
