@@ -5,7 +5,6 @@ from pathlib import Path
 import weaviate
 import weaviate.classes.config as wvcc
 from weaviate.classes.config import Configure
-from weaviate.util import get_valid_uuid
 
 
 def chunk_list(lst, chunk_size):
