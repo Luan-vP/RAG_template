@@ -27,6 +27,9 @@ collection = client.collections.create(
             model="llama3:8b",  # The model to use, e.g. "nomic-embed-text"
         )
     ],
+    generative_config=Configure.Generative.ollama(
+        api_endpoint="http://host.docker.internal:11434"
+    ),
     properties=[
         wvcc.Property(name="content", data_type=wvcc.DataType.TEXT),
         wvcc.Property(name="author", data_type=wvcc.DataType.TEXT),
